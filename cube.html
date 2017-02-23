@@ -1,0 +1,73 @@
+<html>
+
+<script id="vertex-shader" type="x-shader/x-vertex">
+
+attribute  vec4 vPosition;
+attribute  vec4 vColor;
+varying vec4 fColor;
+
+//HW470:
+//use the uniform matrix defined in the js file
+uniform mat4 modelView;
+
+
+void main() 
+{
+    
+
+    fColor = vColor;
+
+    //HW470:
+    //Apply scaling functions rotations and translations to vposition
+    gl_Position = modelView * vPosition;
+} 
+</script>
+
+<script id="fragment-shader" type="x-shader/x-fragment">
+
+precision mediump float;
+   
+varying vec4 fColor;
+
+void
+main()
+{
+    gl_FragColor = fColor;
+}
+</script>
+
+<script type="text/javascript" src="../Common/webgl-utils.js"></script>
+<script type="text/javascript" src="../Common/initShaders.js"></script>
+<script type="text/javascript" src="../Common/MV.js"></script>
+<script type="text/javascript" src="cube.js"></script>
+<script type="text/javascript" src="cubeFunc.js"></script>
+
+<body>
+
+<canvas id="gl-canvas" width="512"" height="512">
+Oops ... your browser doesn't support the HTML5 canvas element
+</canvas>
+
+<br/>
+
+<!--HW470: Buttons and slider for scale -->
+Click canvas to add a cube<br>
+<button id= "xButton">Rotate X</button>
+<button id= "yButton">Rotate Y</button>
+<button id= "zButton">Rotate Z</button>
+<button id= "RandomButton">Rotate Random Axis</button>
+<div>
+scale cube 10% <input id="slider" type="range"
+ min="10" max="100" step="10" value="10" />
+ 100%
+</div>
+
+<!--HW470: Program description and title-->
+<h1>CSE 470 HW#2: Rotating Cubes</h1><br>
+<b>Author:</b> Parker LeBlanc 1207201940   <b>Date: </b> February 9th 2017<br>
+<b>Discription: </b> This program allows users to add rotating cubes to the canvas<br>
+<b>Functionality: </b>Cubes should be added where the user clicks. The users should be able to use the slider to change the size of the cubes. The buttons should change the rotation axis.<br>
+<b>Parameters: </b>Scale of the cubes using the slider. Rotation axis using the buttons. Location of the cube by clicking.<br>
+<b>Resources: </b> Prof. Angel's codes<br>
+</body>
+</html>
